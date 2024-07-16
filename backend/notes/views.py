@@ -20,7 +20,7 @@ def get_note_by_id(request, id):
     except Note.DoesNotExist:
         return Response(status.HTTP_404_NOT_FOUND)
     
-    serializer = NoteSerializer(note, many=False)
+    serializer = NoteSerializer(note, {'request': request}, many=False)
 
     return Response(serializer.data)
 
@@ -29,11 +29,12 @@ def get_note_by_id(request, id):
 def add_new_note(request):
     data = request.data
     note = Note.objects.create(
-        header=data['header'],
-        body=data['body'],
-        image=data['image']
+        header = data['header'],
+        body = data['body'],
+        image = data['image']
     )
-    serializer = NoteSerializer(note, many=False)
+
+    serializer = NoteSerializer(note, {'request': request}, many=False)
 
     return Response(serializer.data)
 
@@ -50,7 +51,7 @@ def modify_note(request, id):
         return Response(status.HTTP_200_OK)
     
     return Response(status.HTTP_400_BAD_REQUEST)
-    
+
 
 @api_view(['DELETE'])
 def delete_note(request, id):
