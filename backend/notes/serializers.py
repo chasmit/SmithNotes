@@ -1,7 +1,11 @@
-from rest_framework.serializers import Serializer
+from django.core.validators import FileExtensionValidator
+from rest_framework import serializers
+from rest_framework.validators import UniqueValidator
 from .models import Note
 
-class NoteSerializer(Serializer.ModelSerializer):
+class NoteSerializer(serializers.ModelSerializer):
+    image = serializers.ImageField(validators=[FileExtensionValidator(allowed_extensions=['png','jpeg','jpg'])], required=False)
+                                                                     
     class Meta:
         model = Note
-        fields = '__all__'
+        fields = ['id', 'header', 'body', 'image', 'created_date', 'last_modified']

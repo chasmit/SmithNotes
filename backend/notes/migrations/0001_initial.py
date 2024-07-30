@@ -9,12 +9,12 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name = 'Note',
             fields = [
-                ('uuid', models.UUIDField(name='UUID', auto_created=True, primary_key=True, serialize=False, )),
-                ('header', models.TextField('Header', blank=True, max_length=128)),
-                ('body', models.TextField('Body', blank=True)),
-                ('image', models.ImageField('Image', blank=True)),
-                ('created_date', models.DateTimeField('Created Date', auto_now_add=True)),
-                ('last_modified', models.DateTimeField('Last Modified', auto_now=True))
+                ('id', models.BigAutoField(name='id', auto_created=True, primary_key=True, serialize=False)),
+                ('header', models.TextField('header', blank=True, max_length=128)),
+                ('body', models.TextField('body', blank=True)),
+                ('image', models.ImageField('image', blank=True)),
+                ('created_date', models.DateTimeField('created date', auto_now_add=True)),
+                ('last_modified', models.DateTimeField('last modified', auto_now=True))
             ]
         )
     ]

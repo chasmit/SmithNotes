@@ -1,38 +1,122 @@
-.App {
-  text-align: center;
+:root {
+  --color-purple: #9045ed;
+  --color-black: #000;
+  --color-text: #fff;
+  --color-gray: ##8b828f;
+  --color-light-gray:##d3d3d3;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+*{
+  border-radius: 1%;
+  box-sizing: border-box;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: inherit;
+  font-size: inherit;
+  scroll-behavior: smooth;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.app {
+  width:100%;
+  height: 88vh;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
+
+.app-container {
+  width:100%;
+  height:100%;
+  color:var(--color-black);
+  background-color: var(--color-gray);
+}
+
+.app-header {
+  background-color: var(--color-purple);
+  border-style: groove;
+  color: var(--color-text);
+  height: 12vh;
+  padding: 3vh;
+  position:sticky;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  justify-content: left;
   font-size: calc(10px + 2vmin);
-  color: white;
+  top:0;
 }
 
-.App-link {
-  color: #61dafb;
+.app-main {
+  width:85%;
+  height:100%;
+  padding-top:2vh;
+  padding-left:40vh;
+  margin: 1vh;
+  background-color: var(--color-light-gray);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.app-sidebar {
+  background-color:var(--color-gray);
+  border-width: 1px;
+  border-style: groove;
+  border-color:var(--color-gray);
+  display: flex;
+  flex-direction: row;
+  padding:2vh;
+  position: fixed;
+  width:15%;
+  height:100%;
+}
+
+.app-button {
+  background-color:var(--color-purple);
+  color:var(--color-light-gray);
+  width: 20vh;
+  height: 6vh;
+  margin-bottom:2vh;
+}
+
+.app-button-group {
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.grid {
+  align-items: center;
+  border-collapse:collapse;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  display:flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+  min-height: 150px;
+  padding:10px;
+  margin:10px;
+}
+
+.grid-col {
+  width:auto;
+  border-style:ridge;
+  border-right:#000;
+  justify-content: center;
+}
+
+.grid-row {
+  height:auto;
+  border-radius: 1px;
+  border-style:ridge;
+  justify-content: center;
+  margin-bottom:5px;
+}
+
+.note-body {
+  width: 80%;
+  padding: 20vh;
+  padding-top: 4vh;
+}
+
+.note-header {
+  width:80%;
+  padding-top: 4vh;
+}
+
+.note-preview {
+  width:33%;
+  cursor: pointer;
 }
