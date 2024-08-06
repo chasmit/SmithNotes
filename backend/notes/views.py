@@ -29,7 +29,7 @@ def get_notes(request):
 
 @api_view(['GET'])
 def get_note_by_id(request, pk):
-    return get_note_by_id_util(pk)
+    return get_note_by_id_util(request, pk)
 
 
 @api_view(['POST'])
@@ -54,8 +54,7 @@ def add_note(request):
 @api_view(['PATCH'])
 def modify_note(request, pk):
     data = request.data
-    note = get_note_by_id_util(data['id'])
-    print(data)
+    note = get_note_by_id_util(request, data['id'])
 
     note = Note.objects.update(
         header = data['header'],
@@ -63,7 +62,7 @@ def modify_note(request, pk):
         image = data['image']
     )
 
-    serializer = NoteSerializer(note, {'request': request}, many=False)
+    serializer = NoteSerializer(note, data, many=False)
     if serializer.is_valid():
         serializer.save()
 
@@ -73,8 +72,8 @@ def modify_note(request, pk):
 
 
 @api_view(['DELETE'])
-def delete_note(pk):
-    note = get_note_by_id(pk)
+def delete_note(request, pk):
+    note = get_note_by_id(request, pk)
     note.delete()
 
     return Response(status.HTTP_200_OK)

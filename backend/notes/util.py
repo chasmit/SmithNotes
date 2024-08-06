@@ -1,5 +1,9 @@
-from .models import Note
+from rest_framework.response import Response
 
-def get_note_by_id_util(pk):
-    notes = Note.objects.get(id=pk)
-    return notes
+from .models import Note
+from .serializers import NoteSerializer
+
+def get_note_by_id_util(request, pk):
+    note = Note.objects.get(id=pk)
+    serializer = NoteSerializer(note, many=False)
+    return Response(serializer.data)

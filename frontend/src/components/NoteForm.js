@@ -40,22 +40,26 @@ function NoteForm(writeNote = () => {} ) {
         e.preventDefault();
 
         const formData = new FormData();
+        if (id) {
+            formData.append('id', id);
+        }
         formData.append('header', header);
         formData.append('body', body);
         formData.append('image', image);
+
+        console.log(formData);
     
         try {
             let response;
             //note exists: being modified
             if (id) {
-                response = await axios.patch(`${BACK_ENDPOINT}/${id}/modify/`, formData.data);
-                console.log(formData);
+                response = await axios.patch(`${BACK_ENDPOINT}/${id}/modify/`, formData);
                 writeNote((previous) => {
                     previous.map((note) => (note.id === response.data.id ? response.data : note));
                 });
 
-                navigate.push("/");
                 alert("Note modified!");
+                navigate.push("/");
             // note does not exist: being created
             } else {
                 response = await axios.post(`${BACK_ENDPOINT}/create/`, formData);
@@ -66,8 +70,8 @@ function NoteForm(writeNote = () => {} ) {
                 setBody("");
                 setImage(null);
 
-                navigate.push("/");
                 alert("Note created!");
+                navigate.push("/");
             } 
         } catch (e) {
             console.log(e);
